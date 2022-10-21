@@ -1,5 +1,9 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
+require('dotenv').config();
+const { API_URL, PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
+
 const fs = require('fs');
 // const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
@@ -18,8 +22,8 @@ module.exports = {
       chainId: 1337
     },
     goerli: {
-      url: "<YOUR_ALCHEMY_URL>",
-      accounts: [ "<YOUR_PRIVATE_KEY>" ]
+      url: API_URL,
+      accounts: [PRIVATE_KEY]
     }
   },
   solidity: {
@@ -30,5 +34,8 @@ module.exports = {
         runs: 200
       }
     }
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY
   }
 };
